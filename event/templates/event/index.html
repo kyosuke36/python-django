@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static 'event/css/style.css' %}">
+</head>
+
+<body>
+    <div class="contner">
+        <div class="content1">
+            <h2>スケジュール調整アプリ</h2>
+            <form action="{% url 'event:create' %}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    イベント名<input type="text" name="text">
+                </fieldset>
+                <input type="submit" value="登録">
+            </form>
+        </div>
+
+        <div class="content2">
+            {% for event in event_list %}
+            <ul>
+                <li>{{ event.event_text }}
+                    <a href="{% url 'event:date' event.id %}">日時</a>
+                    <a href="{% url 'event:edit' event.id %}">編集</a>
+                    <a href="{% url 'event:delete' event.id %}">削除</a>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

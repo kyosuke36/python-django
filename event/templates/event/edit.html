@@ -1,0 +1,19 @@
+{% load static %}
+
+
+<head>
+    <link rel="stylesheet" href="{% static 'event/css/style.css' %}">
+</head>
+
+<body>
+    <div class="contner">
+        <div class="content1">
+            <h2>スケジュール調整アプリ</h2>
+            <form action="{% url 'event:update' event.id %}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    イベント名<input type="text" name="text" value="{{event.event_text}}">
+                </fieldset>
+                <input type="submit" value="更新">
+            </form>
+        </div>
